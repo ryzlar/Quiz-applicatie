@@ -1,7 +1,208 @@
-/*Browser reset*/
+/* Browser reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* --------------------------
+   Login/Register Page CSS
+-------------------------- */
+.auth-page {
+    min-height: 92.6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5; /* light mode background */
+    color: #000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode */
+.dark .auth-page {
+    background-color: #1E1E1E;
+    color: #F5F5F5;
+}
+
+/* Card */
+.auth-page .auth-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.dark .auth-page .auth-card {
+    background-color: #2A2A2A;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Logo */
+.auth-page .auth-logo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.auth-page .auth-logo a {
+    text-decoration: none;
+}
+.auth-page .auth-logo .logo-quiz {
+    font-weight: bold;
+    color: #000000;
+}
+.dark .auth-page .auth-logo .logo-quiz {
+    color: #ffffff;
+}
+.auth-page .auth-logo .logo-lab {
+    color: #5AC8FA;
+    font-weight: bold;
+}
+
+/* Form Fields */
+.auth-page .form-group {
+    margin-bottom: 1rem;
+}
+.auth-page .input-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #D9D9D9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+.auth-page .input-field:focus {
+    outline: none;
+    border-color: #5AC8FA;
+    box-shadow: 0 0 5px rgba(90,200,250,0.5);
+}
+.dark .auth-page .input-field {
+    background-color: #1E1E1E;
+    border-color: #444;
+    color: #F5F5F5;
+}
+
+/* Error messages */
+.auth-page .input-error {
+    color: #EA5455;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+/* Remember Me */
+.auth-page .form-remember {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.auth-page .checkbox-field {
+    width: 16px;
+    height: 16px;
+    accent-color: #5AC8FA;
+    margin-right: 0.5rem;
+}
+.auth-page .checkbox-label {
+    font-size: 0.875rem;
+    color: #666666;
+}
+.dark .auth-page .checkbox-label {
+    color: #AAAAAA;
+}
+
+/* Footer Links & Submit */
+.auth-page .form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+.auth-page .link-register {
+    font-size: 0.875rem;
+    color: #666666;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+.auth-page .link-register:hover {
+    color: #5AC8FA;
+}
+.dark .auth-page .link-register {
+    color: #AAAAAA;
+}
+
+/* Buttons */
+.auth-page .btn-primary {
+    background-color: #5AC8FA;
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.auth-page .btn-primary:hover {
+    background-color: #4DB8FF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.auth-page .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Session Status */
+.auth-page .session-status {
+    background-color: #E6F7FF;
+    color: #005B99;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+.dark .auth-page .session-status {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Footer */
+.auth-footer {
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: auto;
+    padding: 1rem 0;
+    background-color: #f5f5f5;
+    color: #999999;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.dark .auth-footer {
+    background-color: #1E1E1E;
+    color: #AAAAAA;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: #5AC8FA;
+    color: #ffffff;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 1000;
+}
+.theme-toggle:hover {
+    transform: translateY(-3px);
+    background-color: #4DB8FF;
+}

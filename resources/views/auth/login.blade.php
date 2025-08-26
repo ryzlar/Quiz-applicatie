@@ -1,47 +1,59 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.auth')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+@section('title', 'Log in')
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+@section('content')
+    <div class="auth-page">
+        <div class="auth-card">
+            <!-- Logo -->
+            <div class="auth-logo">
+                <a href="{{ url('/') }}">
+                    <h1><span class="logo-quiz">Quiz</span><span class="logo-lab">Lab</span></h1>
                 </a>
-            @endif
+            </div>
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+
+            <!-- Session Status -->
+            <x-auth-session-status class="session-status" :status="session('status')" />
+
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <!-- Email Address -->
+                <div class="form-group">
+                    <x-input-label for="email" :value="__('Email')" />
+                    <x-text-input id="email" class="input-field" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                    <x-input-error :messages="$errors->get('email')" class="input-error" />
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <x-input-label for="password" :value="__('Password')" />
+                    <x-text-input id="password" class="input-field" type="password" name="password" required autocomplete="current-password" />
+                    <x-input-error :messages="$errors->get('password')" class="input-error" />
+                </div>
+
+                <!-- Remember Me -->
+                <div class="form-remember">
+                    <input id="remember_me" type="checkbox" class="checkbox-field" name="remember">
+                    <label for="remember_me" class="checkbox-label">{{ __('Remember me') }}</label>
+                </div>
+
+                <!-- Links & Submit -->
+                <div class="form-footer">
+                    @if (Route::has('register'))
+                        <a class="link-register" href="{{ route('register') }}">{{ __('Register?') }}</a>
+                    @endif
+
+                    <button type="submit" class="btn-primary">{{ __('Log in') }}</button>
+                </div>
+            </form>
         </div>
-    </form>
-</x-guest-layout>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="auth-footer">
+        <p>&copy; {{ date('Y') }} QuizLab. Developed by Marouan.</p>
+    </footer>
+@endsection

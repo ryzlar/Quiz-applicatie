@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') - Wheely Good Cars</title>
+    <title>@yield('title') - QuizLab</title>
 
     <!-- CSS -->
-
+    <script src="https://kit.fontawesome.com/430ad301a9.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -36,31 +36,46 @@
 
 </header>
 
+<div class="theme-toggle" id="theme-toggle"><i class="fa-solid fa-sun"></i></div>
+
 
 <!-- Main Content -->
 <main>
     @yield('content')
 </main>
 
-<!-- Footer -->
+<script>
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    // Check of de gebruiker al een theme in localStorage heeft
+    if (localStorage.getItem('theme') === 'dark') {
+        html.classList.add('dark');
+        toggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    }
+
+    // Klik-event om te togglen
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+
+        if(html.classList.contains('dark')) {
+            toggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            toggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+</script>
+
+
 
 
 <!-- JavaScript -->
 <script src="{{ asset('js/app.js') }}"></script>
 @stack('scripts')
 </body>
-{{--<script>--}}
-{{--    // Selecteer de header-container--}}
-{{--    const header = document.querySelector('.header-container');--}}
 
-{{--    // Voeg een eventlistener toe voor scrollen--}}
-{{--    window.addEventListener('scroll', () => {--}}
-{{--        if (window.scrollY > 0) {--}}
-{{--            header.classList.add('scrolled'); // Voeg de 'scrolled' class toe--}}
-{{--        } else {--}}
-{{--            header.classList.remove('scrolled'); // Verwijder de 'scrolled' class--}}
-{{--        }--}}
-{{--    });--}}
-{{--</script>--}}
 
 </html>
