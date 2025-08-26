@@ -186,8 +186,9 @@
 /* Theme Toggle Button */
 .theme-toggle {
     position: fixed;
-    top: 1rem;
+    top: 50%;
     right: 1rem;
+    transform: translateY(-50%);
     background-color: #5AC8FA;
     color: #ffffff;
     width: 3rem;
@@ -202,7 +203,295 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
     z-index: 1000;
 }
+
 .theme-toggle:hover {
-    transform: translateY(-3px);
+    transform: translateY(-50%) translateY(-3px);
     background-color: #4DB8FF;
 }
+
+/* Dark mode styling voor button */
+.dark .theme-toggle {
+    background-color: #4DB8FF;
+    color: #F5F5F5;
+}
+
+/*----------------
+    Homepage/Frontend css
+-----------------*/
+
+/* --------------------------
+   Main Homepage Container
+-------------------------- */
+.homepage-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.dark .homepage-container {
+    background-color: #1E1E1E;
+    color: #F5F5F5;
+}
+
+/* --------------------------
+   Header
+-------------------------- */
+.homepage-container .frontend-header {
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 1rem 2rem;
+}
+
+.dark .homepage-container .frontend-header {
+    background-color: #2A2A2A;
+}
+
+.homepage-container .frontend-header .container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.homepage-container .frontend-header .logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.homepage-container .frontend-header .logo-quiz {
+    color: #000000;
+}
+
+.homepage-container .frontend-header .logo-lab {
+    color: #5AC8FA;
+}
+
+.dark .homepage-container .frontend-header .logo-quiz {
+    color: #F5F5F5;
+}
+
+.dark .homepage-container .frontend-header .logo-lab {
+    color: #4DB8FF;
+}
+
+.homepage-container .frontend-header .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.homepage-container .frontend-header .nav-links a,
+.homepage-container .frontend-header .nav-links li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.homepage-container .frontend-header .nav-links a:hover,
+.homepage-container .frontend-header .nav-links li a:hover {
+    color: #5AC8FA;
+}
+
+.dark .homepage-container .frontend-header .nav-links a,
+.dark .homepage-container .frontend-header .nav-links li a {
+    color: #F5F5F5;
+}
+
+/* --------------------------
+   Hero Section
+-------------------------- */
+.homepage-container .hero {
+    text-align: center;
+    padding: 5rem 1rem;
+    flex: 1;
+}
+
+.homepage-container .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.homepage-container .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.homepage-container .btn-primary {
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    background-color: #5AC8FA;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.homepage-container .btn-primary:hover {
+    background-color: #4DB8FF;
+}
+
+.dark .homepage-container .btn-primary {
+    background-color: #4DB8FF;
+}
+
+/* --------------------------
+   Features Section
+-------------------------- */
+.homepage-container .features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 3rem 1rem;
+    gap: 2rem;
+}
+
+.homepage-container .feature-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    flex: 1 1 250px;
+    transition: transform 0.3s ease;
+}
+
+.homepage-container .feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.homepage-container .feature-card i {
+    margin-bottom: 1rem;
+    color: #5AC8FA;
+}
+
+.dark .homepage-container .feature-card {
+    background-color: #2A2A2A;
+    color: #F5F5F5;
+}
+
+/* --------------------------
+   Footer
+-------------------------- */
+.homepage-container .frontend-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #f5f5f5;
+    color: #666666;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+.dark .homepage-container .frontend-footer {
+    background-color: #1E1E1E;
+    color: #AAAAAA;
+}
+
+.homepage-container .frontend-footer a {
+    color: #5AC8FA;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.homepage-container .frontend-footer a:hover {
+    color: #4DB8FF;
+}
+
+/* --------------------------
+   Frontend Header
+-------------------------- */
+.frontend-header {
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 1rem 2rem;
+}
+
+.dark .frontend-header {
+    background-color: #2A2A2A;
+}
+
+.frontend-header .container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.frontend-header .logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.frontend-header .logo-quiz {
+    color: #000000;
+}
+
+.frontend-header .logo-lab {
+    color: #5AC8FA;
+}
+
+.dark .frontend-header .logo-quiz {
+    color: #F5F5F5;
+}
+
+.dark .frontend-header .logo-lab {
+    color: #4DB8FF;
+}
+
+.frontend-header .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.frontend-header .nav-links a,
+.frontend-header .nav-links li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.frontend-header .nav-links a:hover,
+.frontend-header .nav-links li a:hover {
+    color: #5AC8FA;
+}
+
+.dark .frontend-header .nav-links a,
+.dark .frontend-header .nav-links li a {
+    color: #F5F5F5;
+}
+
+/* --------------------------
+   Frontend Footer
+-------------------------- */
+.frontend-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #f5f5f5;
+    color: #666666;
+    font-size: 0.9rem;
+}
+
+.dark .frontend-footer {
+    background-color: #1E1E1E;
+    color: #AAAAAA;
+}
+
+.frontend-footer a {
+    color: #5AC8FA;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.frontend-footer a:hover {
+    color: #4DB8FF;
+}
+

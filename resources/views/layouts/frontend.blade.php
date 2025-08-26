@@ -20,27 +20,33 @@
 <body>
 
 <!-- Header -->
-<header class="main-header">
-    <div class="container header-content">
 
-        <nav class="main-nav">
-            <ul>
-                <li><a href="/">Home</a></li>
-                @auth
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
+<header class="frontend-header">
+    <div class="container-header">
+        <a href="{{ url('/') }}" class="logo">
+            <span class="logo-quiz">Quiz</span><span class="logo-lab">Lab</span>
+        </a>
+        <nav class="nav-links">
+            <a href="{{ route('index') }}">Home</a>
+            @auth
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
 
-                        <x-dropdown-link :href="route('logout')"
-                                         onclick="event.preventDefault();
+                    <x-dropdown-link :href="route('logout')"
+                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                            {{ __('Uitloggen') }}
-                        </x-dropdown-link>
-                    </form>
-                @else
-                    <li><a href="/login">login</a></li>
-                @endauth
-            </ul>
+                        {{ __('Uitloggen') }}
+                    </x-dropdown-link>
+                </form>
+            @else
+                <li><a href="/login">login</a></li>
+            @endauth
         </nav>
+
+        <!-- Theme toggle -->
+        <div class="theme-toggle" id="theme-toggle">
+            <i class="fa-solid fa-sun"></i>
+        </div>
     </div>
 </header>
 
@@ -50,11 +56,34 @@
 </main>
 
 <!-- Footer -->
-<footer class="main-footer">
-    <div class="container">
-        <p>&copy; {{ date('Y') }} Quiz Applicatie. Developed by Marouan El Marnissy.</p>
-    </div>
+<footer class="frontend-footer">
+    &copy; {{ date('Y') }} QuizLab. Developed by Marouan.
 </footer>
+
+<script>
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    // Check of de gebruiker al een theme in localStorage heeft
+    if (localStorage.getItem('theme') === 'dark') {
+        html.classList.add('dark');
+        toggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    }
+
+    // Klik-event om te togglen
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+
+        if(html.classList.contains('dark')) {
+            toggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            toggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+</script>
 
 </body>
 </html>
