@@ -23,6 +23,20 @@ class User extends Authenticatable
         'password',
     ];
 
+    use HasFactory, Notifiable;
+
+    public function quizzes() {
+        return $this->hasMany(Quiz::class, 'teacher_id'); // alleen voor docenten
+    }
+
+    public function studentAnswers() {
+        return $this->hasMany(StudentAnswer::class, 'student_id');
+    }
+
+    public function studentScores() {
+        return $this->hasMany(StudentScore::class, 'student_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
