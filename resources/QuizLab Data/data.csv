@@ -1,0 +1,47 @@
+quiz_title,question_text,type,option_text,is_correct,answer
+Test QuizLab Quiz,Wat is 2 + 2?,multiple_choice,3,0,
+Test QuizLab Quiz,Wat is 2 + 2?,multiple_choice,4,1,
+Test QuizLab Quiz,Wat is 2 + 2?,multiple_choice,5,0,
+Test QuizLab Quiz,Wat is de hoofdstad van Frankrijk?,multiple_choice,Parijs,1,
+Test QuizLab Quiz,Wat is de hoofdstad van Frankrijk?,multiple_choice,Londen,0,
+Test QuizLab Quiz,Wat is de hoofdstad van Frankrijk?,multiple_choice,Berlijn,0,
+Test QuizLab Quiz,Welke planeet staat bekend als de Rode Planeet?,multiple_choice,Mars,1,
+Test QuizLab Quiz,Welke planeet staat bekend als de Rode Planeet?,multiple_choice,Venus,0,
+Test QuizLab Quiz,Welke planeet staat bekend als de Rode Planeet?,multiple_choice,Jupiter,0,
+Test QuizLab Quiz,Wat is 5 * 6?,multiple_choice,30,1,
+Test QuizLab Quiz,Wat is 5 * 6?,multiple_choice,20,0,
+Test QuizLab Quiz,Wat is 5 * 6?,multiple_choice,35,0,
+Test QuizLab Quiz,Welke taal wordt gesproken in Brazilië?,multiple_choice,Portugees,1,
+Test QuizLab Quiz,Welke taal wordt gesproken in Brazilië?,multiple_choice,Spaans,0,
+Test QuizLab Quiz,Welke taal wordt gesproken in Brazilië?,multiple_choice,Engels,0,
+Test QuizLab Quiz,Wat is de grootste oceaan op aarde?,multiple_choice,Stille Oceaan,1,
+Test QuizLab Quiz,Wat is de grootste oceaan op aarde?,multiple_choice,Atlantische Oceaan,0,
+Test QuizLab Quiz,Wat is de grootste oceaan op aarde?,multiple_choice,Indische Oceaan,0,
+Test QuizLab Quiz,Wat is de uitkomst van 9 - 3?,multiple_choice,6,1,
+Test QuizLab Quiz,Wat is de uitkomst van 9 - 3?,multiple_choice,5,0,
+Test QuizLab Quiz,Wat is de uitkomst van 9 - 3?,multiple_choice,7,0,
+Test QuizLab Quiz,Hoeveel minuten zitten er in een uur?,multiple_choice,60,1,
+Test QuizLab Quiz,Hoeveel minuten zitten er in een uur?,multiple_choice,50,0,
+Test QuizLab Quiz,Hoeveel minuten zitten er in een uur?,multiple_choice,45,0,
+Test QuizLab Quiz,Wat is 12 / 3?,multiple_choice,4,1,
+Test QuizLab Quiz,Wat is 12 / 3?,multiple_choice,3,0,
+Test QuizLab Quiz,Wat is 12 / 3?,multiple_choice,6,0,
+Test QuizLab Quiz,Welke kleur krijg je door rood en geel te mengen?,multiple_choice,Oranje,1,
+Test QuizLab Quiz,Welke kleur krijg je door rood en geel te mengen?,multiple_choice,Paars,0,
+Test QuizLab Quiz,Welke kleur krijg je door rood en geel te mengen?,multiple_choice,Groen,0,
+Test QuizLab Quiz,Hoe heet het water dat uit de kraan komt?,multiple_choice,Drinkwater,1,
+Test QuizLab Quiz,Hoe heet het water dat uit de kraan komt?,multiple_choice,Olie,0,
+Test QuizLab Quiz,Hoe heet het water dat uit de kraan komt?,multiple_choice,Azijn,0,
+Test QuizLab Quiz,Hoeveel zijden heeft een vierkant?,multiple_choice,4,1,
+Test QuizLab Quiz,Hoeveel zijden heeft een vierkant?,multiple_choice,3,0,
+Test QuizLab Quiz,Hoeveel zijden heeft een vierkant?,multiple_choice,5,0,
+Test QuizLab Quiz,Wat is de hoofdstad van Spanje?,open,,,Madrid
+Test QuizLab Quiz,Noem een kleur die in de regenboog voorkomt.,open,,,Rood
+Test QuizLab Quiz,Wat is 10 + 15?,open,,,25
+Test QuizLab Quiz,Wat is de hoofdstad van Italië?,open,,,Rome
+Test QuizLab Quiz,Wat is 7 * 8?,open,,,56
+Test QuizLab Quiz,Noem een zoogdier.,open,,,Olifant
+Test QuizLab Quiz,Wat is de uitkomst van 15 - 4?,open,,,11
+Test QuizLab Quiz,Noem een gas in de lucht.,open,,,Zuurstof
+Test QuizLab Quiz,Hoeveel dagen heeft een week?,open,,,7
+Test QuizLab Quiz,Wat is 100 / 25?,open,,,4

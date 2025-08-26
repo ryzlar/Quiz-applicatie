@@ -38,6 +38,16 @@
                         {{ __('Uitloggen') }}
                     </x-dropdown-link>
                 </form>
+                <a href="{{ route('quizzes.index') }}">Quizzes</a>
+                @auth
+                    @if(auth()->check() && auth()->user()->role === 'student')
+                        <a href="">Mijn Scores</a>
+
+                    @elseif(auth()->check() && auth()->user()->role === 'teacher')
+                        <a href="">Docent</a>
+                    @endif
+                @endauth
+
             @else
                 <li><a href="/login">login</a></li>
             @endauth

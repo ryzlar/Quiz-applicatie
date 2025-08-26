@@ -1,0 +1,163 @@
+{
+  "title": "Test QuizLab Quiz",
+  "questions": [
+    {
+      "question_text": "Wat is 2 + 2?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "3", "is_correct": false},
+        {"text": "4", "is_correct": true},
+        {"text": "5", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Wat is de hoofdstad van Frankrijk?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "Parijs", "is_correct": true},
+        {"text": "Londen", "is_correct": false},
+        {"text": "Berlijn", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Welke planeet staat bekend als de Rode Planeet?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "Mars", "is_correct": true},
+        {"text": "Venus", "is_correct": false},
+        {"text": "Jupiter", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Wat is 5 * 6?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "30", "is_correct": true},
+        {"text": "20", "is_correct": false},
+        {"text": "35", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Welke taal wordt gesproken in Brazilië?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "Portugees", "is_correct": true},
+        {"text": "Spaans", "is_correct": false},
+        {"text": "Engels", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Wat is de grootste oceaan op aarde?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "Stille Oceaan", "is_correct": true},
+        {"text": "Atlantische Oceaan", "is_correct": false},
+        {"text": "Indische Oceaan", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Wat is de uitkomst van 9 - 3?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "6", "is_correct": true},
+        {"text": "5", "is_correct": false},
+        {"text": "7", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Hoeveel minuten zitten er in een uur?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "60", "is_correct": true},
+        {"text": "50", "is_correct": false},
+        {"text": "45", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Wat is 12 / 3?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "4", "is_correct": true},
+        {"text": "3", "is_correct": false},
+        {"text": "6", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Welke kleur krijg je door rood en geel te mengen?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "Oranje", "is_correct": true},
+        {"text": "Paars", "is_correct": false},
+        {"text": "Groen", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Hoe heet het water dat uit de kraan komt?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "Drinkwater", "is_correct": true},
+        {"text": "Olie", "is_correct": false},
+        {"text": "Azijn", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Hoeveel zijden heeft een vierkant?",
+      "type": "multiple_choice",
+      "options": [
+        {"text": "4", "is_correct": true},
+        {"text": "3", "is_correct": false},
+        {"text": "5", "is_correct": false}
+      ]
+    },
+    {
+      "question_text": "Wat is de hoofdstad van Spanje?",
+      "type": "open",
+      "answer": "Madrid"
+    },
+    {
+      "question_text": "Noem een kleur die in de regenboog voorkomt.",
+      "type": "open",
+      "answer": "Rood"
+    },
+    {
+      "question_text": "Wat is 10 + 15?",
+      "type": "open",
+      "answer": "25"
+    },
+    {
+      "question_text": "Wat is de hoofdstad van Italië?",
+      "type": "open",
+      "answer": "Rome"
+    },
+    {
+      "question_text": "Wat is 7 * 8?",
+      "type": "open",
+      "answer": "56"
+    },
+    {
+      "question_text": "Noem een zoogdier.",
+      "type": "open",
+      "answer": "Olifant"
+    },
+    {
+      "question_text": "Wat is de uitkomst van 15 - 4?",
+      "type": "open",
+      "answer": "11"
+    },
+    {
+      "question_text": "Noem een gas in de lucht.",
+      "type": "open",
+      "answer": "Zuurstof"
+    },
+    {
+      "question_text": "Hoeveel dagen heeft een week?",
+      "type": "open",
+      "answer": "7"
+    },
+    {
+      "question_text": "Wat is 100 / 25?",
+      "type": "open",
+      "answer": "4"
+    }
+  ]
+}
