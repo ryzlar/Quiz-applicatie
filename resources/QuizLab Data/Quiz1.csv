@@ -1,0 +1,60 @@
+question_text,question_type,option_text,is_correct,answer
+Wat is de hoofdstad van Frankrijk?,multiple_choice,Parijs,1,
+Wat is de hoofdstad van Frankrijk?,multiple_choice,Berlijn,0,
+Wat is de hoofdstad van Frankrijk?,multiple_choice,Madrid,0,
+Wat is 5 * 7?,open,,,"35"
+Welke kleur krijg je door blauw en geel te mengen?,multiple_choice,Groen,1,
+Welke kleur krijg je door blauw en geel te mengen?,multiple_choice,Paars,0,
+Welke kleur krijg je door blauw en geel te mengen?,multiple_choice,Oranje,0,
+Noem een gas in de lucht.,open,,,"Zuurstof"
+Wat is de grootste oceaan op aarde?,multiple_choice,Stille Oceaan,1,
+Wat is de grootste oceaan op aarde?,multiple_choice,Atlantische Oceaan,0,
+Wat is de grootste oceaan op aarde?,multiple_choice,Indische Oceaan,0,
+Wat is 12 / 3?,open,,,"4"
+Welke planeet staat bekend als de Rode Planeet?,multiple_choice,Mars,1,
+Welke planeet staat bekend als de Rode Planeet?,multiple_choice,Venus,0,
+Welke planeet staat bekend als de Rode Planeet?,multiple_choice,Jupiter,0,
+Hoeveel zijden heeft een vierkant?,open,,,"4"
+Noem een zoogdier.,open,,,"Olifant"
+Wat is 9 - 3?,multiple_choice,6,1,
+Wat is 9 - 3?,multiple_choice,5,0,
+Wat is 9 - 3?,multiple_choice,7,0,
+Welke taal wordt gesproken in Brazilië?,multiple_choice,Portugees,1,
+Welke taal wordt gesproken in Brazilië?,multiple_choice,Spaans,0,
+Welke taal wordt gesproken in Brazilië?,multiple_choice,Engels,0,
+Wat is de hoofdstad van Italië?,open,,,"Rome"
+Wat is 10 + 15?,open,,,"25"
+Wat is de hoofdstad van Spanje?,open,,,"Madrid"
+Wat is 7 * 8?,open,,,"56"
+Wat is 2 + 2?,multiple_choice,3,0,
+Wat is 2 + 2?,multiple_choice,4,1,
+Wat is 2 + 2?,multiple_choice,5,0,
+Hoeveel minuten zitten er in een uur?,multiple_choice,60,1,
+Hoeveel minuten zitten er in een uur?,multiple_choice,50,0,
+Hoeveel minuten zitten er in een uur?,multiple_choice,45,0,
+Noem een kleur die in de regenboog voorkomt.,open,,,"Rood"
+Hoe heet het water dat uit de kraan komt?,multiple_choice,Drinkwater,1,
+Hoe heet het water dat uit de kraan komt?,multiple_choice,Olie,0,
+Hoe heet het water dat uit de kraan komt?,multiple_choice,Azijn,0
+Wat is 100 / 25?,open,,,"4"
+Wat is de hoofdstad van Duitsland?,multiple_choice,Berlijn,1,
+Wat is de hoofdstad van Duitsland?,multiple_choice,München,0,
+Wat is de hoofdstad van Duitsland?,multiple_choice,Frankfurt,0
+Wat is de uitkomst van 15 - 4?,open,,,"11"
+Wat is 8 * 6?,open,,,"48"
+Noem een fruitsoort.,open,,,"Appel"
+Wat is de hoofdstad van Engeland?,multiple_choice,Londen,1,
+Wat is de hoofdstad van Engeland?,multiple_choice,Manchester,0,
+Wat is de hoofdstad van Engeland?,multiple_choice,Bristol,0
+Welke planeet is het dichtst bij de zon?,multiple_choice,Mercurius,1,
+Welke planeet is het dichtst bij de zon?,multiple_choice,Venus,0,
+Welke planeet is het dichtst bij de zon?,multiple_choice,Mars,0
+Wat is 6 + 9?,open,,,"15"
+Noem een kleur die begint met B.,open,,,"Blauw"
+Wat is de hoofdstad van Nederland?,multiple_choice,Amsterdam,1,
+Wat is de hoofdstad van Nederland?,multiple_choice,Rotterdam,0,
+Wat is de hoofdstad van Nederland?,multiple_choice,Utrecht,0
+Wat is 20 - 7?,open,,,"13"
+Welke kleur ontstaat door rood en blauw te mengen?,multiple_choice,Paars,1,
+Welke kleur ontstaat door rood en blauw te mengen?,multiple_choice,Groen,0,
+Welke kleur ontstaat door rood en blauw te mengen?,multiple_choice,Oranje,0

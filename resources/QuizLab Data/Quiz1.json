@@ -1,0 +1,216 @@
+{
+    "title": "Random QuizLab Quiz",
+    "questions": [
+        {
+            "question_text": "Wat is de hoofdstad van Frankrijk?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "Parijs", "is_correct": true},
+                {"text": "Berlijn", "is_correct": false},
+                {"text": "Madrid", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Wat is 5 * 7?",
+            "question_type": "open",
+            "answer": "35"
+        },
+        {
+            "question_text": "Welke kleur krijg je door blauw en geel te mengen?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "Groen", "is_correct": true},
+                {"text": "Paars", "is_correct": false},
+                {"text": "Oranje", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Noem een gas in de lucht.",
+            "question_type": "open",
+            "answer": "Zuurstof"
+        },
+        {
+            "question_text": "Wat is de grootste oceaan op aarde?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "Stille Oceaan", "is_correct": true},
+                {"text": "Atlantische Oceaan", "is_correct": false},
+                {"text": "Indische Oceaan", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Wat is 12 / 3?",
+            "question_type": "open",
+            "answer": "4"
+        },
+        {
+            "question_text": "Welke planeet staat bekend als de Rode Planeet?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "Mars", "is_correct": true},
+                {"text": "Venus", "is_correct": false},
+                {"text": "Jupiter", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Hoeveel zijden heeft een vierkant?",
+            "question_type": "open",
+            "answer": "4"
+        },
+        {
+            "question_text": "Noem een zoogdier.",
+            "question_type": "open",
+            "answer": "Olifant"
+        },
+        {
+            "question_text": "Wat is 9 - 3?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "6", "is_correct": true},
+                {"text": "5", "is_correct": false},
+                {"text": "7", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Welke taal wordt gesproken in Brazilië?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "Portugees", "is_correct": true},
+                {"text": "Spaans", "is_correct": false},
+                {"text": "Engels", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Wat is de hoofdstad van Italië?",
+            "question_type": "open",
+            "answer": "Rome"
+        },
+        {
+            "question_text": "Wat is 10 + 15?",
+            "question_type": "open",
+            "answer": "25"
+        },
+        {
+            "question_text": "Wat is de hoofdstad van Spanje?",
+            "question_type": "open",
+            "answer": "Madrid"
+        },
+        {
+            "question_text": "Wat is 7 * 8?",
+            "question_type": "open",
+            "answer": "56"
+        },
+        {
+            "question_text": "Wat is 2 + 2?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "3", "is_correct": false},
+                {"text": "4", "is_correct": true},
+                {"text": "5", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Hoeveel minuten zitten er in een uur?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "60", "is_correct": true},
+                {"text": "50", "is_correct": false},
+                {"text": "45", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Noem een kleur die in de regenboog voorkomt.",
+            "question_type": "open",
+            "answer": "Rood"
+        },
+        {
+            "question_text": "Hoe heet het water dat uit de kraan komt?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "Drinkwater", "is_correct": true},
+                {"text": "Olie", "is_correct": false},
+                {"text": "Azijn", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Wat is 100 / 25?",
+            "question_type": "open",
+            "answer": "4"
+        },
+        {
+            "question_text": "Wat is de hoofdstad van Duitsland?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "Berlijn", "is_correct": true},
+                {"text": "München", "is_correct": false},
+                {"text": "Frankfurt", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Wat is de uitkomst van 15 - 4?",
+            "question_type": "open",
+            "answer": "11"
+        },
+        {
+            "question_text": "Wat is 8 * 6?",
+            "question_type": "open",
+            "answer": "48"
+        },
+        {
+            "question_text": "Noem een fruitsoort.",
+            "question_type": "open",
+            "answer": "Appel"
+        },
+        {
+            "question_text": "Wat is de hoofdstad van Engeland?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "Londen", "is_correct": true},
+                {"text": "Manchester", "is_correct": false},
+                {"text": "Bristol", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Welke planeet is het dichtst bij de zon?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "Mercurius", "is_correct": true},
+                {"text": "Venus", "is_correct": false},
+                {"text": "Mars", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Wat is 6 + 9?",
+            "question_type": "open",
+            "answer": "15"
+        },
+        {
+            "question_text": "Noem een kleur die begint met B.",
+            "question_type": "open",
+            "answer": "Blauw"
+        },
+        {
+            "question_text": "Wat is de hoofdstad van Nederland?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "Amsterdam", "is_correct": true},
+                {"text": "Rotterdam", "is_correct": false},
+                {"text": "Utrecht", "is_correct": false}
+            ]
+        },
+        {
+            "question_text": "Wat is 20 - 7?",
+            "question_type": "open",
+            "answer": "13"
+        },
+        {
+            "question_text": "Welke kleur ontstaat door rood en blauw te mengen?",
+            "question_type": "multiple_choice",
+            "options": [
+                {"text": "Paars", "is_correct": true},
+                {"text": "Groen", "is_correct": false},
+                {"text": "Oranje", "is_correct": false}
+            ]
+        }
+    ]
+}

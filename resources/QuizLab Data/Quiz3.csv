@@ -1,0 +1,54 @@
+question_text,question_type,option_text,is_correct,answer
+Wat is de hoofdstad van Frankrijk?,multiple_choice,Parijs,1,
+Wat is de hoofdstad van Frankrijk?,multiple_choice,Lyon,0,
+Wat is de hoofdstad van Frankrijk?,multiple_choice,Marseille,0,
+Noem een vogel die niet kan vliegen.,open,,,"Struisvogel"
+Wat is 25 + 17?,open,,,"42"
+Welke planeet staat bekend om zijn blauwe kleur?,multiple_choice,Neptunus,1,
+Welke planeet staat bekend om zijn blauwe kleur?,multiple_choice,Mars,0,
+Welke planeet staat bekend om zijn blauwe kleur?,multiple_choice,Venus,0,
+Noem een zoogdier dat in water leeft.,open,,,"Dolfijn"
+Wat is 100 * 3?,open,,,"300"
+Welke taal wordt gesproken in Egypte?,multiple_choice,Arabisch,1,
+Welke taal wordt gesproken in Egypte?,multiple_choice,Spaans,0,
+Welke taal wordt gesproken in Egypte?,multiple_choice,Frans,0,
+Wat is de hoofdstad van Italië?,open,,,"Rome"
+Hoeveel continenten zijn er op aarde?,open,,,"7"
+Welke planeet is het kleinste in ons zonnestelsel?,multiple_choice,Mercurius,1,
+Welke planeet is het kleinste in ons zonnestelsel?,multiple_choice,Mars,0,
+Welke planeet is het kleinste in ons zonnestelsel?,multiple_choice,Venus,0,
+Noem een citrusvrucht.,open,,,"Sinaasappel"
+Wat is 11 * 11?,open,,,"121"
+Welke kleur ontstaat door geel en blauw te mengen?,multiple_choice,Groen,1,
+Welke kleur ontstaat door geel en blauw te mengen?,multiple_choice,Oranje,0,
+Welke kleur ontstaat door geel en blauw te mengen?,multiple_choice,Paars,0,
+Noem een land in Zuid-Amerika.,open,,,"Brazilië"
+Wat is 45 / 9?,open,,,"5"
+Welke planeet staat het verst van de zon?,multiple_choice,Neptunus,1,
+Welke planeet staat het verst van de zon?,multiple_choice,Uranus,0,
+Welke planeet staat het verst van de zon?,multiple_choice,Saturnus,0,
+Noem een zoogdier dat in bomen leeft.,open,,,"Aap"
+Wat is 20 * 6?,open,,,"120"
+Welke oceaan ligt tussen Noord-Amerika en Europa?,multiple_choice,Atlantische Oceaan,1,
+Welke oceaan ligt tussen Noord-Amerika en Europa?,multiple_choice,Indische Oceaan,0,
+Welke oceaan ligt tussen Noord-Amerika en Europa?,multiple_choice,Stille Oceaan,0,
+Noem een kleur van de regenboog.,open,,,"Blauw"
+Wat is 50 - 23?,open,,,"27"
+Welke planeet wordt vaak de 'ochtendster' genoemd?,multiple_choice,Venus,1,
+Welke planeet wordt vaak de 'ochtendster' genoemd?,multiple_choice,Mars,0,
+Welke planeet wordt vaak de 'ochtendster' genoemd?,multiple_choice,Mercurius,0,
+Noem een groente.,open,,,"Wortel"
+Wat is 7 * 12?,open,,,"84"
+Welke taal wordt gesproken in Duitsland?,multiple_choice,Duits,1,
+Welke taal wordt gesproken in Duitsland?,multiple_choice,Engels,0,
+Welke taal wordt gesproken in Duitsland?,multiple_choice,Frans,0,
+Noem een planeet die een maan heeft.,open,,,"Jupiter"
+Wat is 30 + 55?,open,,,"85"
+Welke planeet wordt ook wel 'rode planeet' genoemd?,multiple_choice,Mars,1,
+Welke planeet wordt ook wel 'rode planeet' genoemd?,multiple_choice,Venus,0,
+Welke planeet wordt ook wel 'rode planeet' genoemd?,multiple_choice,Jupiter,0,
+Noem een land in Afrika.,open,,,"Kenya"
+Wat is 14 * 6?,open,,,"84"
+Welke planeet heeft de meeste manen?,multiple_choice,Jupiter,1,
+Welke planeet heeft de meeste manen?,multiple_choice,Saturnus,0,
+Welke planeet heeft de meeste manen?,multiple_choice,Mars,0
