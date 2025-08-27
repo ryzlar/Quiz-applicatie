@@ -22,7 +22,9 @@
                                 <h3 class="quiz-title">{{ $quiz->title }}</h3>
                                 <p class="quiz-info">Aantal vragen: {{ $quiz->questions_count }}</p>
                                 <div class="quiz-actions">
+                                    @if(auth()->user()->role === 'student')
                                     <a href="{{ route('quizzes.start', $quiz->id) }}" class="quiz-start-btn">Start</a>
+                                    @endif
 
                                     @if(auth()->user()->role === 'teacher')
                                         <form action="{{ route('quizzes.destroy', $quiz->id) }}" method="POST" class="quiz-delete-form">

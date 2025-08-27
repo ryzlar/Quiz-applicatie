@@ -31,6 +31,21 @@ Route::middleware('auth')->group(function () {
     Route::put('/questions/{question}', [MainController::class, 'queUpdate'])->name('questions.update');
     Route::delete('/questions/{question}', [MainController::class, 'quesDestroy'])->name('questions.destroy');
 
+    Route::get('/quiz/{quiz}/start', [MainController::class, 'startQuizForm'])->name('quiz.start.form');
+    // Quiz start - GET voor de eerste vraag
+    Route::get('quizzes/{quiz}/start', [MainController::class, 'startQuiz'])->name('quiz.start');
+
+// Quiz answer - POST om antwoord te verwerken
+    Route::post('quizzes/{quiz}/answer', [MainController::class, 'answerQuiz'])->name('quiz.answer');
+
+// Volgende vraag - GET
+    Route::get('quizzes/{quiz}/next', [MainController::class, 'nextQuestion'])->name('quiz.next');
+
+// Quiz finish
+    Route::get('quizzes/{quiz}/finish', [MainController::class, 'finishQuiz'])->name('quiz.finish');
+
+
+
 });
 
 require __DIR__.'/auth.php';

@@ -20,11 +20,6 @@ class MainController extends Controller
         return view('quizzes', compact('quizzes'));
     }
 
-    public function startQuiz(Quiz $quiz) {
-        // logica om quiz te starten (bijv. vragen ophalen)
-        $questions = $quiz->questions;
-        return view('quizzes.start', compact('quiz', 'questions'));
-    }
 
     public function quizSettings(Quiz $quiz) {
         // Tel het aantal multiple-choice en open vragen
@@ -149,41 +144,41 @@ class MainController extends Controller
     protected function importCsv($file, Quiz $quiz)
     {
         $rows = array_map('str_getcsv', file($file));
-        $header = array_map('trim', array_shift($rows));
+        $header = array_map('trim', array_shift($rows)); // eerste regel = header
+        $headerCount = count($header);
 
         foreach ($rows as $index => $row) {
+            // Zorg dat rij evenveel elementen heeft als header
+            $row = array_pad($row, $headerCount, null);
             $rowData = array_combine($header, $row);
 
             $question_text = $rowData['question_text'] ?? null;
-            $type_raw = $rowData['type'] ?? null;
+            $type_raw = $rowData['question_type'] ?? null;
 
             if (!$question_text || !$type_raw) {
-                throw new \Exception("CSV regel ".($index+2)." mist question_text of type.");
+                throw new \Exception("CSV regel ".($index+2)." mist question_text of question_type.");
             }
 
             $type = strtolower(trim($type_raw));
 
             if ($type === 'multiple_choice') {
-                $all_answers = [];
-                $correct_answer = null;
-
-                // Alle opties voor dezelfde vraag verzamelen
-                $existingQuestion = Question::where('quiz_id', $quiz->id)
-                    ->where('question_text', $question_text)
-                    ->where('type', 'multiple_choice')
-                    ->first();
-
-                if (!$existingQuestion) {
-                    $existingQuestion = new Question();
-                    $existingQuestion->quiz_id = $quiz->id;
-                    $existingQuestion->question_text = $question_text;
-                    $existingQuestion->type = 'multiple_choice';
-                    $existingQuestion->all_answers = json_encode([]);
-                }
+                $existingQuestion = Question::firstOrCreate(
+                    [
+                        'quiz_id' => $quiz->id,
+                        'question_text' => $question_text,
+                        'type' => 'multiple_choice'
+                    ],
+                    [
+                        'all_answers' => json_encode([]),
+                        'correct_answer' => null
+                    ]
+                );
 
                 $all_answers = json_decode($existingQuestion->all_answers, true) ?? [];
                 $option_text = $rowData['option_text'] ?? null;
-                if ($option_text) $all_answers[] = $option_text;
+                if ($option_text && !in_array($option_text, $all_answers)) {
+                    $all_answers[] = $option_text;
+                }
 
                 $existingQuestion->all_answers = json_encode($all_answers);
 
@@ -212,6 +207,8 @@ class MainController extends Controller
             }
         }
     }
+
+
 
 
 
@@ -268,4 +265,91 @@ class MainController extends Controller
         return redirect()->route('quizzes.settings', $quizId)
             ->with('success', 'Vraag succesvol verwijderd!');
     }
+
+    public function startQuizForm(Quiz $quiz) {
+        return view('quizzesStart', compact('quiz'));
+    }
+
+    public function startQuiz(Request $request, Quiz $quiz) {
+        $request->validate([
+            'question_type' => 'required|in:multiple_choice,open,both',
+        ]);
+
+        $type = $request->question_type;
+
+        if($type === 'both') {
+            $questions = $quiz->questions()->get();
+        } else {
+            $questions = $quiz->questions()->where('type', $type)->get();
+        }
+
+        // Sla de geselecteerde vragen tijdelijk op in session
+        $request->session()->put('quiz_questions', $questions);
+        $request->session()->put('current_question', 0);
+        $request->session()->put('score', 0);
+
+        return redirect()->route('quiz.next', $quiz->id);
+    }
+
+    public function nextQuestion(Quiz $quiz, Request $request) {
+        $questions = $request->session()->get('quiz_questions', collect());
+        $currentIndex = $request->session()->get('current_question', 0);
+
+        if($currentIndex >= $questions->count()) {
+            return redirect()->route('quiz.finish', $quiz->id);
+        }
+
+        $question = $questions[$currentIndex];
+
+        return view('quizzes.question', compact('quiz', 'question', 'currentIndex'));
+    }
+
+    public function submitAnswer(Quiz $quiz, Request $request) {
+        $questions = $request->session()->get('quiz_questions', collect());
+        $currentIndex = $request->session()->get('current_question', 0);
+
+        if($currentIndex >= $questions->count()) {
+            return redirect()->route('quiz.finish', $quiz->id);
+        }
+
+        $question = $questions[$currentIndex];
+
+        $isCorrect = false;
+
+        if($question->type === 'multiple_choice') {
+            $isCorrect = $request->answer == $question->correct_answer;
+        } else {
+            $isCorrect = strtolower(trim($request->answer)) === strtolower(trim($question->correct_answer));
+        }
+
+        // update score
+        if($isCorrect) {
+            $request->session()->increment('score');
+        }
+
+        // feedback tonen
+        $feedback = [
+            'isCorrect' => $isCorrect,
+            'correct_answer' => $question->correct_answer
+        ];
+
+        $request->session()->put('current_question', $currentIndex + 1);
+
+        return view('quizzesFeedback', compact('quiz', 'question', 'feedback'));
+    }
+
+    public function finishQuiz(Quiz $quiz, Request $request) {
+        $score = $request->session()->get('score', 0);
+        $total = $request->session()->get('quiz_questions', collect())->count();
+
+        // hier kan je opslaan in database: scores, user_id, quiz_id
+        // bv QuizResult::create([...]);
+
+        // session opruimen
+        $request->session()->forget(['quiz_questions', 'current_question', 'score']);
+
+        return view('quizzes.finish', compact('quiz', 'score', 'total'));
+    }
+
+
 }
