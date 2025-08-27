@@ -765,3 +765,231 @@
 .dark .create-quiz-submit {
     background-color: #4DB8FF;
 }
+
+
+
+/* Algemene card styling */
+.edit-question-card {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #1E2A38; /* donker achtergrond */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Titels */
+.edit-question-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00A3FF; /* QuizLab blauw accent */
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Groepen */
+.edit-question-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Labels */
+.edit-question-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+/* Input en select */
+.edit-question-input {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid #3A4A5A;
+    background-color: #2A3B4D;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+/* Optie inputs */
+.edit-question-option {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+/* Checkbox label */
+.edit-question-option label {
+    color: #ffffff;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Foutmeldingen */
+.edit-question-error {
+    color: #FF4E00; /* oranje voor errors */
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+/* Buttons */
+.edit-question-submit,
+.edit-question-group button {
+    background-color: #00A3FF; /* blauw accent */
+    color: #ffffff;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.edit-question-submit:hover,
+.edit-question-group button:hover {
+    background-color: #0088CC;
+}
+
+.settings-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 2rem;
+    color: white;
+}
+
+.settings-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #5AC8FA; /* QuizLab blauw accent */
+}
+
+.settings-subtitle {
+    margin-bottom: 1.5rem;
+}
+
+.settings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.settings-table th, .settings-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.settings-actions a, .settings-actions button {
+    margin-right: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-blue {
+    background-color: #5AC8FA;
+    color: white;
+}
+
+.btn-red {
+    background-color: #EA5455;
+    color: white;
+}
+
+.student-settings-form p {
+    margin-bottom: 1rem;
+}
+
+.student-options label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Edit Question Page Styling */
+.edit-question-card {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.edit-question-card h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #1e40af; /* QuizLab blauw */
+    text-align: center;
+}
+
+/* Form Fields */
+.edit-question-card form div {
+    margin-bottom: 1.25rem;
+}
+
+.edit-question-card label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #374151; /* neutrale grijs */
+}
+
+.edit-question-card input[type="text"],
+.edit-question-card select {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s ease-in-out;
+}
+
+.edit-question-card input[type="text"]:focus,
+.edit-question-card select:focus {
+    border-color: #2563eb; /* QuizLab blauw accent */
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Checkbox styling */
+.edit-question-card input[type="checkbox"] {
+    margin-left: 0.5rem;
+    transform: scale(1.1);
+}
+
+/* Error messages */
+.edit-question-card p {
+    color: #dc2626; /* rood */
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+/* Button */
+.btn-blue {
+    display: inline-block;
+    background: #2563eb; /* QuizLab blauw */
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.btn-blue:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.btn-blue:active {
+    transform: translateY(0);
+}
+

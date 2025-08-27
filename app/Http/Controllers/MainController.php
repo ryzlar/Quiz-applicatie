@@ -27,9 +27,17 @@ class MainController extends Controller
     }
 
     public function quizSettings(Quiz $quiz) {
-        // optionele instellingenpagina
-        return view('quizzes.settings', compact('quiz'));
+        // Tel het aantal multiple-choice en open vragen
+
+        $multipleCount = $quiz->questions()->where('type', 'multiple_choice')->count();
+        $openCount = $quiz->questions()->where('type', 'open')->count();
+
+        // Check of de gebruiker docent of student is
+        $isTeacher = auth()->user()->role === 'teacher'; // zorg dat je rol in users tabel staat
+
+        return view('quizzesSettings', compact('quiz', 'multipleCount', 'openCount', 'isTeacher'));
     }
+
 
     public function createQuiz() {
         return view('quizzesCreate');
@@ -80,73 +88,128 @@ class MainController extends Controller
         }
 
         foreach ($data['questions'] as $index => $question) {
-            if (empty($question['question_text']) || empty($question['type'])) {
-                throw new \Exception("JSON vraag op index $index is ongeldig.");
+            $question_text = $question['question_text'] ?? null;
+            $type_raw = $question['type'] ?? null;
+
+            if (!$question_text || !$type_raw) {
+                throw new \Exception("Vraag op index $index mist 'question_text' of 'type'.");
             }
 
-            if ($question['type'] === 'multiple_choice' && (!isset($question['options']) || !is_array($question['options']))) {
-                throw new \Exception("Multiple choice vraag op index $index heeft geen geldige opties.");
-            }
+            $type = strtolower(trim($type_raw));
 
-            Question::create([
-                'quiz_id' => $quiz->id,
-                'question_text' => $question['question_text'],
-                'type' => $question['type'],
-                'options' => isset($question['options']) ? json_encode($question['options']) : null,
-                'answer' => $question['answer'] ?? null,
-            ]);
+            if ($type === 'multiple_choice') {
+                if (!isset($question['options']) || !is_array($question['options']) || count($question['options']) < 2) {
+                    throw new \Exception("Multiple choice vraag op index $index heeft geen geldige opties.");
+                }
+
+                $all_answers = [];
+                $correct_answer = null;
+
+                foreach ($question['options'] as $opt) {
+                    $text = $opt['text'] ?? null;
+                    if (!$text) continue;
+                    $all_answers[] = $text;
+                    if (!empty($opt['is_correct'])) {
+                        $correct_answer = $text;
+                    }
+                }
+
+                if (!$correct_answer) {
+                    throw new \Exception("Multiple choice vraag op index $index mist een correct antwoord.");
+                }
+
+                Question::create([
+                    'quiz_id' => $quiz->id,
+                    'question_text' => $question_text,
+                    'type' => 'multiple_choice',
+                    'all_answers' => json_encode($all_answers),
+                    'correct_answer' => $correct_answer,
+                ]);
+
+            } elseif ($type === 'open') {
+                $answer = $question['answer'] ?? null;
+                if (!$answer) {
+                    throw new \Exception("Open vraag op index $index mist een antwoord.");
+                }
+
+                Question::create([
+                    'quiz_id' => $quiz->id,
+                    'question_text' => $question_text,
+                    'type' => 'open',
+                    'all_answers' => null,
+                    'correct_answer' => $answer,
+                ]);
+
+            } else {
+                throw new \Exception("Onbekend vraagtype '$type' op index $index.");
+            }
         }
     }
-
 
     protected function importCsv($file, Quiz $quiz)
     {
         $rows = array_map('str_getcsv', file($file));
-        $header = array_shift($rows);
-
-        if (!$header || !in_array('question_text', $header) || !in_array('type', $header)) {
-            throw new \Exception('CSV bevat ongeldige kolommen.');
-        }
-
-        $questions = [];
+        $header = array_map('trim', array_shift($rows));
 
         foreach ($rows as $index => $row) {
-            $rowData = @array_combine($header, $row);
-            if (!$rowData || empty($rowData['question_text']) || empty($rowData['type'])) {
-                throw new \Exception("CSV regel ".($index+2)." bevat ongeldige data.");
+            $rowData = array_combine($header, $row);
+
+            $question_text = $rowData['question_text'] ?? null;
+            $type_raw = $rowData['type'] ?? null;
+
+            if (!$question_text || !$type_raw) {
+                throw new \Exception("CSV regel ".($index+2)." mist question_text of type.");
             }
 
-            if ($rowData['type'] === 'multiple_choice') {
-                $key = $rowData['question_text'];
-                $questions[$key]['quiz_id'] = $quiz->id;
-                $questions[$key]['question_text'] = $rowData['question_text'];
-                $questions[$key]['type'] = $rowData['type'];
-                $questions[$key]['options'][] = [
-                    'text' => $rowData['option_text'] ?? '',
-                    'is_correct' => $rowData['is_correct'] == 1 ? true : false
-                ];
-            } else { // open vragen
-                if (empty($rowData['answer'])) {
-                    throw new \Exception("CSV regel ".($index+2)." heeft geen antwoord voor open vraag.");
+            $type = strtolower(trim($type_raw));
+
+            if ($type === 'multiple_choice') {
+                $all_answers = [];
+                $correct_answer = null;
+
+                // Alle opties voor dezelfde vraag verzamelen
+                $existingQuestion = Question::where('quiz_id', $quiz->id)
+                    ->where('question_text', $question_text)
+                    ->where('type', 'multiple_choice')
+                    ->first();
+
+                if (!$existingQuestion) {
+                    $existingQuestion = new Question();
+                    $existingQuestion->quiz_id = $quiz->id;
+                    $existingQuestion->question_text = $question_text;
+                    $existingQuestion->type = 'multiple_choice';
+                    $existingQuestion->all_answers = json_encode([]);
                 }
+
+                $all_answers = json_decode($existingQuestion->all_answers, true) ?? [];
+                $option_text = $rowData['option_text'] ?? null;
+                if ($option_text) $all_answers[] = $option_text;
+
+                $existingQuestion->all_answers = json_encode($all_answers);
+
+                if (!empty($rowData['is_correct']) && $rowData['is_correct'] == 1) {
+                    $existingQuestion->correct_answer = $option_text;
+                }
+
+                $existingQuestion->save();
+
+            } elseif ($type === 'open') {
+                $answer = $rowData['answer'] ?? null;
+                if (!$answer) {
+                    throw new \Exception("CSV regel ".($index+2)." mist een antwoord voor open vraag.");
+                }
+
                 Question::create([
                     'quiz_id' => $quiz->id,
-                    'question_text' => $rowData['question_text'],
-                    'type' => $rowData['type'],
-                    'options' => null,
-                    'answer' => $rowData['answer'],
+                    'question_text' => $question_text,
+                    'type' => 'open',
+                    'all_answers' => null,
+                    'correct_answer' => $answer,
                 ]);
-            }
-        }
 
-        foreach ($questions as $q) {
-            Question::create([
-                'quiz_id' => $q['quiz_id'],
-                'question_text' => $q['question_text'],
-                'type' => $q['type'],
-                'options' => json_encode($q['options']),
-                'answer' => null,
-            ]);
+            } else {
+                throw new \Exception("CSV regel ".($index+2)." heeft onbekend type '$type'.");
+            }
         }
     }
 
@@ -155,5 +218,54 @@ class MainController extends Controller
     public function destroyQuiz(Quiz $quiz) {
         $quiz->delete();
         return redirect()->route('quizzes.index')->with('success', 'Quiz verwijderd!');
+    }
+
+    public function queEdit(Question $question)
+    {
+        // Optioneel: check of de ingelogde docent eigenaar is van de quiz
+        if(auth()->user()->role === 'teacher' && $question->quiz->teacher_id !== auth()->id()) {
+            abort(403, 'Je mag deze vraag niet bewerken.');
+        }
+
+        return view('questions_edit', compact('question'));
+    }
+
+
+    // Update de vraag in de database
+    public function queUpdate(Request $request, Question $question)
+    {
+        $request->validate([
+            'question_text' => 'required|string',
+            'type' => 'required|in:multiple_choice,open',
+            'all_answers' => 'nullable|array',
+            'correct_answer' => 'nullable|string',
+        ]);
+
+        $question->question_text = $request->question_text;
+        $question->type = $request->type;
+
+        if ($request->type === 'multiple_choice') {
+            $question->all_answers = $request->all_answers ?? [];
+            $question->correct_answer = $request->correct_answer;
+        } else {
+            $question->all_answers = null;
+            $question->correct_answer = $request->correct_answer;
+        }
+
+        $question->save();
+
+        return redirect()->route('quizzes.settings', $question->quiz_id)
+            ->with('success', 'Vraag succesvol bijgewerkt!');
+    }
+
+
+    // Verwijder een vraag
+    public function quesDestroy(Question $question)
+    {
+        $quizId = $question->quiz_id;
+        $question->delete();
+
+        return redirect()->route('quizzes.settings', $quizId)
+            ->with('success', 'Vraag succesvol verwijderd!');
     }
 }

@@ -10,10 +10,11 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('quiz_id')->constrained('quizzes')->onDelete('cascade');
-            $table->text('question_text');
+            $table->foreignId('quiz_id')->constrained()->onDelete('cascade');
+            $table->string('question_text');
             $table->enum('type', ['multiple_choice', 'open']);
-            $table->text('correct_answer')->nullable(); // voor open vragen
+            $table->json('all_answers')->nullable();   // bevat ALLE opties
+            $table->string('correct_answer')->nullable(); // enkel juiste antwoord
             $table->timestamps();
         });
     }

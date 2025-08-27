@@ -26,6 +26,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/quizzes/create', [MainController::class, 'createQuiz'])->name('quizzes.create');
     Route::post('/quizzes', [MainController::class, 'storeQuiz'])->name('quizzes.store');
     Route::delete('/quizzes/{quiz}', [MainController::class, 'destroyQuiz'])->name('quizzes.destroy');
+
+    Route::get('/questions/{question}/edit', [MainController::class, 'queEdit'])->name('questions.edit');
+    Route::put('/questions/{question}', [MainController::class, 'queUpdate'])->name('questions.update');
+    Route::delete('/questions/{question}', [MainController::class, 'quesDestroy'])->name('questions.destroy');
+
 });
 
 require __DIR__.'/auth.php';
