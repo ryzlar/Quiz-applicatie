@@ -4,8 +4,7 @@
 
 @section('content')
     <div class="quiz-container">
-        <h2>Feedback voor vraag {{ $currentIndex + 1 }}</h2>
-        <p class="question-text">{{ $question->question_text }}</p>
+        <h2>Feedback voor vraag {{ $feedbackIndex + 1 }}</h2>
 
         @if($feedback['isCorrect'])
             <div class="feedback-correct">Correct! 🎉</div>
@@ -15,10 +14,11 @@
             </div>
         @endif
 
-        @if($currentIndex + 1 < count(session('quiz_questions')))
+        @if($feedbackIndex + 1 < count(session('quiz_questions')))
             <a href="{{ route('quiz.next', $quiz->id) }}" class="quiz-next">Volgende vraag</a>
         @else
             <a href="{{ route('quiz.finish', $quiz->id) }}" class="quiz-finish">Quiz Voltooien</a>
         @endif
+
     </div>
 @endsection

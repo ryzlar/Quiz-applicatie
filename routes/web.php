@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\ProfileController;
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index'])->name('index');
@@ -11,40 +9,48 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-
 Route::middleware('auth')->group(function () {
+
+    // ========================
     // Quiz overzicht
+    // ========================
     Route::get('/quizzes', [MainController::class, 'quizzes'])->name('quizzes.index');
 
-    Route::get('/quizzes/{quiz}/start', [MainController::class, 'startQuiz'])
-        ->name('quizzes.start');
-    Route::get('/quizzes/{quiz}/settings', [MainController::class, 'quizSettings'])
-        ->name('quizzes.settings');
+    // ========================
+    // Quiz starten
+    // ========================
+    // Form om vraag-types te kiezen (GET)
+    Route::get('/quizzes/{quiz}/start', [MainController::class, 'startQuizForm'])->name('quizzes.start.form');
 
-    // Alleen voor teacher: quiz aanmaken
-    Route::get('/quizzes/create', [MainController::class, 'createQuiz'])->name('quizzes.create');
-    Route::post('/quizzes', [MainController::class, 'storeQuiz'])->name('quizzes.store');
-    Route::delete('/quizzes/{quiz}', [MainController::class, 'destroyQuiz'])->name('quizzes.destroy');
+    // Form versturen om quiz echt te starten (POST)
+    Route::post('/quizzes/{quiz}/start', [MainController::class, 'startQuiz'])->name('quizzes.start');
 
-    Route::get('/questions/{question}/edit', [MainController::class, 'queEdit'])->name('questions.edit');
-    Route::put('/questions/{question}', [MainController::class, 'queUpdate'])->name('questions.update');
-    Route::delete('/questions/{question}', [MainController::class, 'quesDestroy'])->name('questions.destroy');
+    // Volgende vraag (GET)
+    Route::get('/quizzes/{quiz}/next', [MainController::class, 'nextQuestion'])->name('quiz.next');
 
-    Route::get('/quiz/{quiz}/start', [MainController::class, 'startQuizForm'])->name('quiz.start.form');
-    // Quiz start - GET voor de eerste vraag
-    Route::get('quizzes/{quiz}/start', [MainController::class, 'startQuiz'])->name('quiz.start');
+    // Antwoord indienen (POST)
+    Route::post('/quizzes/{quiz}/answer', [MainController::class, 'submitAnswer'])->name('quiz.answer');
 
-// Quiz answer - POST om antwoord te verwerken
-    Route::post('quizzes/{quiz}/answer', [MainController::class, 'answerQuiz'])->name('quiz.answer');
+    // Quiz afronden (GET)
+    Route::get('/quizzes/{quiz}/finish', [MainController::class, 'finishQuiz'])->name('quiz.finish');
 
-// Volgende vraag - GET
-    Route::get('quizzes/{quiz}/next', [MainController::class, 'nextQuestion'])->name('quiz.next');
+    // ========================
+    // Quiz instellingen
+    // ========================
+    Route::get('/quizzes/{quiz}/settings', [MainController::class, 'quizSettings'])->name('quizzes.settings');
 
-// Quiz finish
-    Route::get('quizzes/{quiz}/finish', [MainController::class, 'finishQuiz'])->name('quiz.finish');
+    // ========================
+    // Quiz CRUD (Teacher only)
+    // ========================
+    Route::middleware('auth')->group(function () {
+        Route::get('/quizzes/create', [MainController::class, 'createQuiz'])->name('quizzes.create');
+        Route::post('/quizzes', [MainController::class, 'storeQuiz'])->name('quizzes.store');
+        Route::delete('/quizzes/{quiz}', [MainController::class, 'destroyQuiz'])->name('quizzes.destroy');
 
-
+        Route::get('/questions/{question}/edit', [MainController::class, 'queEdit'])->name('questions.edit');
+        Route::put('/questions/{question}', [MainController::class, 'queUpdate'])->name('questions.update');
+        Route::delete('/questions/{question}', [MainController::class, 'quesDestroy'])->name('questions.destroy');
+    });
 
 });
 

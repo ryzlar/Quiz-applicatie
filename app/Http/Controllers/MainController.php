@@ -271,25 +271,36 @@ class MainController extends Controller
     }
 
     public function startQuiz(Request $request, Quiz $quiz) {
-        $request->validate([
-            'question_type' => 'required|in:multiple_choice,open,both',
-        ]);
+        // Check welke vragen geselecteerd zijn via checkboxes
+        $includeMultiple = $request->has('include_multiple');
+        $includeOpen = $request->has('include_open');
 
-        $type = $request->question_type;
+        if ($includeMultiple && $includeOpen) {
+            $type = 'both';
+        } elseif ($includeMultiple) {
+            $type = 'multiple_choice';
+        } elseif ($includeOpen) {
+            $type = 'open';
+        } else {
+            // Geen optie geselecteerd, fallback naar beide of geef error
+            return back()->withErrors(['question_type' => 'Selecteer minstens één type vragen.']);
+        }
 
-        if($type === 'both') {
+        // Vragen ophalen
+        if ($type === 'both') {
             $questions = $quiz->questions()->get();
         } else {
             $questions = $quiz->questions()->where('type', $type)->get();
         }
 
-        // Sla de geselecteerde vragen tijdelijk op in session
+        // Sla de geselecteerde vragen op in session
         $request->session()->put('quiz_questions', $questions);
         $request->session()->put('current_question', 0);
         $request->session()->put('score', 0);
 
         return redirect()->route('quiz.next', $quiz->id);
     }
+
 
     public function nextQuestion(Quiz $quiz, Request $request) {
         $questions = $request->session()->get('quiz_questions', collect());
@@ -301,7 +312,7 @@ class MainController extends Controller
 
         $question = $questions[$currentIndex];
 
-        return view('quizzes.question', compact('quiz', 'question', 'currentIndex'));
+        return view('quizzesQuestion', compact('quiz', 'question', 'currentIndex'));
     }
 
     public function submitAnswer(Quiz $quiz, Request $request) {
@@ -322,22 +333,24 @@ class MainController extends Controller
             $isCorrect = strtolower(trim($request->answer)) === strtolower(trim($question->correct_answer));
         }
 
-        // update score
         if($isCorrect) {
             $request->session()->increment('score');
         }
 
-        // feedback tonen
         $feedback = [
             'isCorrect' => $isCorrect,
             'correct_answer' => $question->correct_answer
         ];
 
+        // Hier verhogen we de sessie-index
         $request->session()->put('current_question', $currentIndex + 1);
 
-        return view('quizzesFeedback', compact('quiz', 'question', 'feedback'));
-    }
+        // !! Belangrijk: stuur de juiste index naar de feedback view
+        // We doen -1 omdat we de sessie net hebben verhoogd
+        $feedbackIndex = $currentIndex;
 
+        return view('quizzesFeedback', compact('quiz', 'question', 'feedback', 'feedbackIndex'));
+    }
     public function finishQuiz(Quiz $quiz, Request $request) {
         $score = $request->session()->get('score', 0);
         $total = $request->session()->get('quiz_questions', collect())->count();
@@ -348,7 +361,7 @@ class MainController extends Controller
         // session opruimen
         $request->session()->forget(['quiz_questions', 'current_question', 'score']);
 
-        return view('quizzes.finish', compact('quiz', 'score', 'total'));
+        return view('quizzesFinish', compact('quiz', 'score', 'total'));
     }
 
 
