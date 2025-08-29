@@ -416,7 +416,7 @@ class MainController extends Controller
             ->get()
             ->keyBy('question_id');
 
-        $totalQuestions = $quiz->questions->count();
+        $totalQuestions = session('quiz_questions') ? session('quiz_questions')->count() : $quiz->questions->count();
 
         foreach ($quiz->questions as $question) {
             if(isset($studentAnswers[$question->id])) {
