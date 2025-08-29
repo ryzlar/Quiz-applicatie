@@ -9,7 +9,7 @@ class StudentAnswer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['student_id', 'question_id', 'quiz_id', 'answer_text'];
+    protected $fillable = ['student_id', 'question_id', 'quiz_id', 'answer_text', 'is_correct'];
 
     public function student() {
         return $this->belongsTo(User::class, 'student_id');

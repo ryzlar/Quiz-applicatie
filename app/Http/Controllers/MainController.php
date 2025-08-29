@@ -271,35 +271,30 @@ class MainController extends Controller
     }
 
     public function startQuiz(Request $request, Quiz $quiz) {
-        // Check welke vragen geselecteerd zijn via checkboxes
         $includeMultiple = $request->has('include_multiple');
         $includeOpen = $request->has('include_open');
 
-        if ($includeMultiple && $includeOpen) {
-            $type = 'both';
-        } elseif ($includeMultiple) {
-            $type = 'multiple_choice';
-        } elseif ($includeOpen) {
-            $type = 'open';
-        } else {
-            // Geen optie geselecteerd, fallback naar beide of geef error
+        if (!$includeMultiple && !$includeOpen) {
             return back()->withErrors(['question_type' => 'Selecteer minstens één type vragen.']);
         }
 
-        // Vragen ophalen
-        if ($type === 'both') {
-            $questions = $quiz->questions()->get();
-        } else {
-            $questions = $quiz->questions()->where('type', $type)->get();
-        }
+        $questions = $quiz->questions();
 
-        // Sla de geselecteerde vragen op in session
+        if ($includeMultiple && !$includeOpen) {
+            $questions = $questions->where('type', 'multiple_choice');
+        } elseif ($includeOpen && !$includeMultiple) {
+            $questions = $questions->where('type', 'open');
+        } // Als beide aangevinkt zijn → alle vragen, geen filter nodig
+
+        $questions = $questions->get();
+
         $request->session()->put('quiz_questions', $questions);
         $request->session()->put('current_question', 0);
         $request->session()->put('score', 0);
 
         return redirect()->route('quiz.next', $quiz->id);
     }
+
 
 
     public function nextQuestion(Quiz $quiz, Request $request) {
@@ -342,27 +337,121 @@ class MainController extends Controller
             'correct_answer' => $question->correct_answer
         ];
 
-        // Hier verhogen we de sessie-index
         $request->session()->put('current_question', $currentIndex + 1);
 
-        // !! Belangrijk: stuur de juiste index naar de feedback view
-        // We doen -1 omdat we de sessie net hebben verhoogd
         $feedbackIndex = $currentIndex;
+
+        // --- Sla het antwoord op in de sessie ---
+        $quizAnswers = $request->session()->get('quiz_answers_' . $quiz->id, []);
+        $quizAnswers[$question->id] = [
+            'answer' => $request->answer,
+            'is_correct' => $isCorrect,
+        ];
+        $request->session()->put('quiz_answers_' . $quiz->id, $quizAnswers);
+
+        // --- Sla het antwoord ook direct op in de database ---
+        \App\Models\StudentAnswer::updateOrCreate(
+            [
+                'student_id' => auth()->id(),
+                'quiz_id' => $quiz->id,
+                'question_id' => $question->id
+            ],
+            [
+                'answer_text' => $request->answer,
+                'is_correct' => $isCorrect,
+            ]
+        );
 
         return view('quizzesFeedback', compact('quiz', 'question', 'feedback', 'feedbackIndex'));
     }
-    public function finishQuiz(Quiz $quiz, Request $request) {
-        $score = $request->session()->get('score', 0);
-        $total = $request->session()->get('quiz_questions', collect())->count();
 
-        // hier kan je opslaan in database: scores, user_id, quiz_id
-        // bv QuizResult::create([...]);
+    public function finishQuiz($quizId)
+    {
+        $quiz = Quiz::with('questions')->findOrFail($quizId);
 
-        // session opruimen
-        $request->session()->forget(['quiz_questions', 'current_question', 'score']);
+        // Haal de antwoorden van de huidige student op (bijv via session of database)
+        $answers = session('quiz_answers_' . $quizId, []);
+        // $answers = [question_id => user_answer, ...]
 
-        return view('quizzesFinish', compact('quiz', 'score', 'total'));
+        $totalQuestions = $quiz->questions->count(); // totaal aantal vragen in de quiz
+        $score = 0;
+
+        foreach ($quiz->questions as $question) {
+            if(isset($answers[$question->id])) {
+                // logica om score te berekenen
+                // als multiple-choice:
+                if($question->type === 'multiple' || $question->type === 'single') {
+                    if($answers[$question->id] === $question->correct_answer) {
+                        $score++;
+                    }
+                }
+                // als open vraag: misschien handmatig door docent gescoord, hier voorbeeld: score = 1
+                if($question->type === 'open') {
+                    if(isset($answers[$question->id]['score'])) {
+                        $score += $answers[$question->id]['score'];
+                    }
+                }
+            }
+        }
+
+        $percentage = $totalQuestions > 0 ? round(($score / $totalQuestions) * 100) : 0;
+
+        return view('quiz.finish', [
+            'quiz' => $quiz,
+            'score' => $score,
+            'total' => $totalQuestions,
+            'percentage' => $percentage
+        ]);
     }
+
+
+    public function stopQuiz(Quiz $quiz, Request $request)
+    {
+        $studentId = auth()->id();
+        $score = 0;
+
+        // Haal antwoorden van database
+        $studentAnswers = \App\Models\StudentAnswer::where('student_id', $studentId)
+            ->where('quiz_id', $quiz->id)
+            ->get()
+            ->keyBy('question_id');
+
+        $totalQuestions = $quiz->questions->count();
+
+        foreach ($quiz->questions as $question) {
+            if(isset($studentAnswers[$question->id])) {
+                if($studentAnswers[$question->id]->is_correct) {
+                    $score++;
+                }
+            }
+            // anders automatisch fout
+        }
+
+        $percentage = $totalQuestions > 0 ? round(($score / $totalQuestions) * 100) : 0;
+
+        // Score opslaan in database
+        \App\Models\StudentScore::updateOrCreate(
+            [
+                'student_id' => $studentId,
+                'quiz_id' => $quiz->id
+            ],
+            [
+                'score' => $score
+            ]
+        );
+
+        // Session opruimen
+        $request->session()->forget(['quiz_questions', 'current_question', 'score', 'quiz_answers_' . $quiz->id]);
+
+        return view('quizzesFinish', [
+            'quiz' => $quiz,
+            'score' => $score,
+            'total' => $totalQuestions,
+            'percentage' => $percentage
+        ]);
+    }
+
+
 
 
 }

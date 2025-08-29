@@ -34,6 +34,10 @@ Route::middleware('auth')->group(function () {
     // Quiz afronden (GET)
     Route::get('/quizzes/{quiz}/finish', [MainController::class, 'finishQuiz'])->name('quiz.finish');
 
+
+    // Quiz stoppen (GET)
+    Route::post('/quizzes/{quiz}/stop', [MainController::class, 'stopQuiz'])->name('quiz.stop');
+
     // ========================
     // Quiz instellingen
     // ========================

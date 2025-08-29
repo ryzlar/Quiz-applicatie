@@ -23,7 +23,12 @@
                                 <p class="quiz-info">Aantal vragen: {{ $quiz->questions_count }}</p>
                                 <div class="quiz-actions">
                                     @if(auth()->user()->role === 'student')
-                                    <a href="{{ route('quizzes.start', $quiz->id) }}" class="quiz-start-btn">Start</a>
+                                        <form action="{{ route('quizzes.start', $quiz->id) }}" method="POST" class="student-settings-form">
+                                            @csrf
+                                            <input type="hidden" name="include_multiple" value="1">
+                                            <input type="hidden" name="include_open" value="1">
+                                            <button type="submit" class="btn-blue" style="margin-top:1rem;">Starten</button>
+                                        </form>
                                     @endif
 
                                     @if(auth()->user()->role === 'teacher')

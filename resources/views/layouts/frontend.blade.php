@@ -6,6 +6,8 @@
     <title>@yield('title') - QuizLab</title>
 
     <!-- Fonts & Icons -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xA4i0pW+..." crossorigin="anonymous" />
 
@@ -61,7 +63,7 @@
 </header>
 
 <!-- Main Content -->
-<main class="page-content">
+<main>
     @yield('content')
 </main>
 

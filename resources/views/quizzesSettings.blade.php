@@ -42,14 +42,14 @@
                         </tbody>
                     </table>
                 @else
-                    <form action="{{ route('quizzes.start', $quiz->id) }}" method="POST" class="student-settings-form">
+                    <form action="{{ route('quizzes.start', $quiz->id) }}" method="POST" class="quiz-start-form">
                         @csrf
                         <p>Kies welke vragen je wilt gebruiken bij deze quiz:</p>
-                        <div class="student-options">
+                        <div class="quiz-options">
                             <label><input type="checkbox" name="include_multiple" checked> Alleen Multiple Choice</label>
                             <label><input type="checkbox" name="include_open" checked> Alleen Open Vragen</label>
                         </div>
-                        <button type="submit" class="btn-blue" style="margin-top:1rem;">Opslaan en Starten</button>
+                        <button type="submit" class="btn-blue">Opslaan en Starten</button>
                     </form>
 
                 @endif

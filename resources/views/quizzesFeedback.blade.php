@@ -14,11 +14,12 @@
             </div>
         @endif
 
-        @if($feedbackIndex + 1 < count(session('quiz_questions')))
+        @if($feedbackIndex + 1 < session('quiz_questions')->count())
             <a href="{{ route('quiz.next', $quiz->id) }}" class="quiz-next">Volgende vraag</a>
         @else
             <a href="{{ route('quiz.finish', $quiz->id) }}" class="quiz-finish">Quiz Voltooien</a>
         @endif
+
 
     </div>
 @endsection

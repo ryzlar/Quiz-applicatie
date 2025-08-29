@@ -4,6 +4,45 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* Default = Dark Mode */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #1E1E1E; /* donker */
+    color: #f5f5f5;
+}
+
+/* Light Mode */
+html.light, body.light {
+    background-color: #ffffff; /* licht */
+    color: #1E1E1E;
+}
+
+/* Footer */
+.frontend-footer {
+    height: 80px;
+    background-color: #1c1c1c;
+    color: #aaa;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html.light .frontend-footer,
+body.light .frontend-footer {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Main content vult altijd scherm */
+main {
+    min-height: calc(100vh - 80px); /* scherm - footer */
+    background-color: inherit; /* pakt automatisch body achtergrond */
+    padding: 2rem;
+}
+
 
 /* --------------------------
    Login/Register Page CSS
@@ -475,35 +514,8 @@
     color: #F5F5F5;
 }
 
-/* --------------------------
-   Frontend Footer
--------------------------- */
-.frontend-footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    background-color: #f5f5f5;
-    color: #666666;
-    font-size: 0.9rem;
-}
 
-.dark .frontend-footer {
-    background-color: #1E1E1E;
-    color: #AAAAAA;
-}
 
-.frontend-footer a {
-    color: #5AC8FA;
-    text-decoration: underline;
-    transition: color 0.2s ease;
-}
-
-.frontend-footer a:hover {
-    color: #4DB8FF;
-}
-
-/* --------------------------
-   Quiz Page Styles
--------------------------- */
 
 /* Main Quiz Page Container */
 .quiz-page-content {
@@ -774,90 +786,92 @@
 
 
 
-/* Algemene card styling */
+/* Algemene card styling edit */
+/* Edit Question Card - Light Mode */
 .edit-question-card {
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
-    background-color: #1E2A38; /* donker achtergrond */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    background-color: #ffffff; /* light mode */
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    color: #111111;
 }
 
-/* Titels */
+/* Titles */
+.edit-question-card h2,
 .edit-question-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #00A3FF; /* QuizLab blauw accent */
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-/* Groepen */
-.edit-question-group {
-    margin-bottom: 1.5rem;
+    color: #1e40af; /* blauw accent light mode */
 }
 
 /* Labels */
-.edit-question-label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #ffffff;
+.edit-question-label,
+.edit-question-card label {
+    color: #374151; /* neutraal grijs */
 }
 
-/* Input en select */
-.edit-question-input {
-    width: 100%;
-    padding: 0.6rem 0.8rem;
-    border-radius: 6px;
-    border: 1px solid #3A4A5A;
-    background-color: #2A3B4D;
-    color: #ffffff;
-    font-size: 1rem;
-}
-
-/* Optie inputs */
-.edit-question-option {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-/* Checkbox label */
-.edit-question-option label {
-    color: #ffffff;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-/* Foutmeldingen */
-.edit-question-error {
-    color: #FF4E00; /* oranje voor errors */
-    font-size: 0.9rem;
-    margin-top: 0.3rem;
+/* Inputs */
+.edit-question-input,
+.edit-question-card input[type="text"],
+.edit-question-card select {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #111111;
 }
 
 /* Buttons */
 .edit-question-submit,
-.edit-question-group button {
-    background-color: #00A3FF; /* blauw accent */
+.edit-question-group button,
+.btn-blue {
+    background-color: #2563eb; /* blauw accent */
     color: #ffffff;
-    padding: 0.6rem 1.2rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.2s;
 }
 
-.edit-question-submit:hover,
-.edit-question-group button:hover {
-    background-color: #0088CC;
+/* Errors */
+.edit-question-error,
+.edit-question-card p {
+    color: #dc2626;
 }
+
+/* ===========================
+   Dark Mode
+=========================== */
+.dark .edit-question-card {
+    background-color: #1E2A38;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.dark .edit-question-card h2,
+.dark .edit-question-title {
+    color: #00A3FF; /* blauw accent dark mode */
+}
+
+.dark .edit-question-label,
+.dark .edit-question-card label {
+    color: #ffffff;
+}
+
+.dark .edit-question-input,
+.dark .edit-question-card input[type="text"],
+.dark .edit-question-card select {
+    background-color: #2A3B4D;
+    border: 1px solid #3A4A5A;
+    color: #ffffff;
+}
+
+.dark .edit-question-submit,
+.dark .edit-question-group button,
+.dark .btn-blue {
+    background-color: #00A3FF;
+}
+
+.dark .edit-question-error,
+.dark .edit-question-card p {
+    color: #5AC8FA;
+}
+
 
 .settings-card {
     background: #1a1a1a;
@@ -1158,4 +1172,462 @@
 
 .finish-btn:hover {
     background-color: #187bcd; /* donkerder blauw */
+}
+
+/* --------------------------
+   Quiz Start Form Styling
+---------------------------*/
+
+/* Form container */
+.quiz-start-form {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff; /* light mode */
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    color: #111111;
+}
+
+/* Dark Mode */
+.dark .quiz-start-form {
+    background-color: #1E2A38;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Form paragraph */
+.quiz-start-form p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Dark mode paragraph */
+.dark .quiz-start-form p {
+    color: #F5F5F5;
+}
+
+/* Options container */
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Option labels */
+.quiz-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #374151; /* light mode text */
+    cursor: pointer;
+}
+
+/* Dark mode labels */
+.dark .quiz-options label {
+    color: #ffffff;
+}
+
+/* Checkbox inputs */
+.quiz-options input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #5AC8FA;
+    cursor: pointer;
+}
+
+/* Submit button */
+.quiz-start-form .btn-blue {
+    display: inline-block;
+    background-color: #2563eb; /* light mode */
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+    margin-top: 1rem;
+}
+
+.quiz-start-form .btn-blue:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.quiz-start-form .btn-blue:active {
+    transform: translateY(0);
+}
+
+/* Dark mode button */
+.dark .quiz-start-form .btn-blue {
+    background-color: #00A3FF;
+}
+
+.dark .quiz-start-form .btn-blue:hover {
+    background-color: #0088CC;
+}
+
+/* --------------------------
+   Quiz Play Page Styling
+---------------------------*/
+
+/* Container */
+.quiz-play-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 2.5rem 3rem;
+    background-color: #f8f9fa; /* light mode */
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode */
+.dark .quiz-play-container {
+    background-color: #1E2A38;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Quiz Title */
+.quiz-play-container h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Question Counter */
+.quiz-play-container p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Question Text */
+.quiz-play-container .question-text {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Form */
+.quiz-play-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Multiple Choice Options */
+.quiz-play-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background-color: #ffffff; /* light mode */
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.quiz-play-option:hover {
+    background-color: #e0f0ff;
+    transform: translateY(-1px);
+}
+
+/* Dark Mode options */
+.dark .quiz-play-option {
+    background-color: #2A3B4D;
+    border-color: #444;
+    color: #F5F5F5;
+}
+
+.dark .quiz-play-option:hover {
+    background-color: #375a7f;
+}
+
+/* Radio Buttons */
+.quiz-play-option input[type="radio"] {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+/* Open Question Input */
+.quiz-play-container .input-text {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.quiz-play-container .input-text:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.dark .quiz-play-container .input-text {
+    background-color: #1E2A38;
+    border-color: #444;
+    color: #F5F5F5;
+}
+
+/* Submit Button */
+.quiz-play-container .submit-btn {
+    background-color: #2563eb; /* light mode */
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    margin-top: 1rem;
+}
+
+.quiz-play-container .submit-btn:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.quiz-play-container .submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Dark mode button */
+.dark .quiz-play-container .submit-btn {
+    background-color: #00A3FF;
+}
+
+.dark .quiz-play-container .submit-btn:hover {
+    background-color: #0088CC;
+}
+
+/* Stop Quiz Button */
+.quiz-play-container .stop-btn {
+    background-color: #EA5455; /* rood accent voor stoppen */
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.quiz-play-container .stop-btn:hover {
+    background-color: #d94348; /* donkerder rood */
+    transform: translateY(-2px);
+}
+
+.quiz-play-container .stop-btn:active {
+    transform: translateY(0);
+}
+
+/* Dark mode */
+.dark .quiz-play-container .stop-btn {
+    background-color: #d94348;
+}
+
+.dark .quiz-play-container .stop-btn:hover {
+    background-color: #b53a3f;
+}
+
+.quiz-finish-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(15, 15, 15, 0.95);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    color: #f0f0f0;
+    backdrop-filter: blur(8px);
+}
+
+.quiz-finish-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1E90FF; /* jouw blauwe accent */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.quiz-score-card {
+    background: rgba(30, 30, 30, 0.85);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.quiz-message {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.quiz-score,
+.quiz-percentage {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.quiz-progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.quiz-progress {
+    background: #1E90FF; /* blauwe progress bar */
+    height: 100%;
+    width: 0;
+    border-radius: 10px 0 0 10px;
+    transition: width 1s ease-in-out;
+}
+
+.quiz-finish-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #1E90FF; /* blauwe knop */
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(30,144,255,0.4);
+}
+
+.quiz-finish-btn:hover {
+    background-color: #1c7ed6; /* donkerdere hover */
+    box-shadow: 0 6px 18px rgba(30,144,255,0.6);
+    transform: translateY(-2px);
+}
+
+/* Stop Quiz knop */
+.quiz-stop-btn {
+    /*red knop*/
+    background-color : #EA5455;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.quiz-stop-btn:hover {
+    background-color: #ff7300;
+    transform: translateY(-2px);
+}
+
+/* Modal overlay */
+/* Modal overlay */
+.quiz-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.quiz-modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.quiz-modal:not(.hidden) {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Modal box */
+.quiz-modal-content {
+    background-color: rgba(20, 20, 20, 0.95);
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    animation: modalFade 0.3s ease-out;
+}
+
+@keyframes modalFade {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Modal title */
+.modal-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Buttons container */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* Cancel button */
+.modal-cancel-btn {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background-color: #555;
+    color: #fff;
+    transition: all 0.2s ease;
+}
+
+.modal-cancel-btn:hover {
+    background-color: #777;
+    transform: translateY(-2px);
+}
+
+/* Confirm button (blauw) */
+.modal-confirm-btn {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    transition: all 0.2s ease;
+}
+
+.modal-confirm-btn:hover {
+    background-color: #339CFF;
+    transform: translateY(-2px);
 }
