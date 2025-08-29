@@ -18,5 +18,11 @@ class StudentScore extends Model
     public function quiz() {
         return $this->belongsTo(Quiz::class);
     }
+
+    public function studentAnswers() {
+        return $this->hasMany(StudentAnswer::class, 'quiz_id', 'quiz_id')
+            ->where('student_id', auth()->id());
+    }
+
 }
 

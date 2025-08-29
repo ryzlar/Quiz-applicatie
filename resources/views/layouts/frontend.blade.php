@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @php
+        use Illuminate\Support\Str;
+    @endphp
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') - QuizLab</title>
@@ -43,7 +47,13 @@
                 <a href="{{ route('quizzes.index') }}">Quizzes</a>
                 @auth
                     @if(auth()->check() && auth()->user()->role === 'student')
-                        <a href="">Mijn Scores</a>
+                        @php
+                            $randomId = strtolower(Str::random(20)); // 20 karakters, hoofdletters en cijfers
+                        @endphp
+
+                        <a href="{{ route('student.scores', ['sessionId' => $randomId]) }}" class="btn-blue">
+                            Bekijk mijn scores
+                        </a>
 
                     @elseif(auth()->check() && auth()->user()->role === 'teacher')
                         <a href="">Docent</a>

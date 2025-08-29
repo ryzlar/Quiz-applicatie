@@ -19,6 +19,7 @@ class StudentAnswer extends Model
         return $this->belongsTo(Question::class);
     }
 
+
     public function quiz() {
         return $this->belongsTo(Quiz::class);
     }

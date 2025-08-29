@@ -22,7 +22,7 @@ class Quiz extends Model
     public function studentScores() {
         return $this->hasMany(StudentScore::class);
     }
-    
+
 
     /**
      * Check of een student deze quiz al voltooid heeft
@@ -32,3 +32,4 @@ class Quiz extends Model
         return $this->studentScores()->where('student_id', $studentId)->exists();
     }
 }
+

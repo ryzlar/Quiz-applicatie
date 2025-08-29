@@ -1631,3 +1631,77 @@ main {
     background-color: #339CFF;
     transform: translateY(-2px);
 }
+
+.scores-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+    color: #e0e0e0;
+}
+
+.score-card {
+    margin-bottom: 1rem;
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #1e1e2f;
+}
+
+.score-toggle-btn {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    background: #2a2a3d;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #c0c0ff;
+    transition: background 0.2s;
+}
+
+.score-toggle-btn:hover {
+    background: #3b3b5a;
+}
+
+.score-details {
+    padding: 1rem;
+    background: #252539;
+}
+
+.hidden {
+    display: none;
+}
+
+.score-passed {
+    color: #4ade80; /* groen */
+    font-weight: bold;
+}
+
+.score-failed {
+    color: #f87171; /* rood */
+    font-weight: bold;
+}
+
+.question-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.question-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #444;
+}
+
+.answer-correct {
+    color: #4ade80;
+}
+
+.answer-incorrect {
+    color: #f87171;
+}
+
+.correct-answer {
+    color: #60a5fa; /* blauw voor juiste antwoord */
+    font-style: italic;
+}
+

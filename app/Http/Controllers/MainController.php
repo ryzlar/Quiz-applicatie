@@ -451,6 +451,21 @@ class MainController extends Controller
         ]);
     }
 
+    public function studentScores($sessionId)
+    {
+        $studentId = auth()->id();
+
+        $studentScores = \App\Models\StudentScore::with([
+            'quiz.questions',
+            'studentAnswers' => function($query) use ($studentId) {
+                $query->where('student_id', $studentId);
+            }
+        ])->where('student_id', $studentId)->get();
+
+        return view('studentScores', compact('studentScores'));
+    }
+
+
 
 
 
