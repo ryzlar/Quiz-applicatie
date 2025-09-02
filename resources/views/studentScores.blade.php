@@ -5,7 +5,6 @@
 @section('content')
     <div class="scores-container">
         <h2>Mijn Scores</h2>
-
         @forelse($studentScores as $score)
             <div class="score-card">
                 <button type="button" class="score-toggle-btn">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\StudentScore;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -430,7 +432,7 @@ class MainController extends Controller
         $percentage = $totalQuestions > 0 ? round(($score / $totalQuestions) * 100) : 0;
 
         // Score opslaan in database
-        \App\Models\StudentScore::updateOrCreate(
+        StudentScore::updateOrCreate(
             [
                 'student_id' => $studentId,
                 'quiz_id' => $quiz->id
@@ -455,7 +457,7 @@ class MainController extends Controller
     {
         $studentId = auth()->id();
 
-        $studentScores = \App\Models\StudentScore::with([
+        $studentScores = StudentScore::with([
             'quiz.questions',
             'studentAnswers' => function($query) use ($studentId) {
                 $query->where('student_id', $studentId);
@@ -465,8 +467,17 @@ class MainController extends Controller
         return view('studentScores', compact('studentScores'));
     }
 
+    public function docentenPage()
+    {
+        $students = User::where('role', 'student')
+            ->with([
+                'studentScores.quiz.questions',
+                'studentAnswers.question'
+            ])
+            ->get();
 
-
+        return view('docentPage', compact('students'));
+    }
 
 
 }

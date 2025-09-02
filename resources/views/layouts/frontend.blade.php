@@ -56,7 +56,7 @@
                         </a>
 
                     @elseif(auth()->check() && auth()->user()->role === 'teacher')
-                        <a href="">Docent</a>
+                        <a href="/docenten">Docent</a>
                     @endif
                 @endauth
 

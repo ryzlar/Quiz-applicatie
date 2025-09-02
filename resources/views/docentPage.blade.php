@@ -1,10 +1,14 @@
-<div class="docent-page-container">
-    <h1>Overzicht Studenten</h1>
+@extends('layouts.frontend')
 
-    <ul class="student-list">
-        @foreach($students as $student)
-            <li class="student-item">
-                <div class="student-card">
+@section('title', 'Docent Page')
+
+@section('content')
+    <div class="docent-page-container">
+        <h1>Overzicht Studenten</h1>
+
+        <ul class="student-list">
+            @foreach($students as $student)
+                <li class="student-item">
                     <button class="toggle-btn" onclick="toggleElement('student-{{ $student->id }}')">
                         {{ $student->name }}
                     </button>
@@ -14,16 +18,22 @@
                             @foreach($student->studentScores as $score)
                                 <li class="quiz-item">
                                     <button class="toggle-btn" onclick="toggleElement('quiz-{{ $student->id }}-{{ $score->quiz->id }}')">
-                                        {{ $score->quiz->title }}
+                                        {{ $score->quiz->title }} - Score: {{ $score->score }}/{{ $score->quiz->questions->count() }}
                                     </button>
-                                    <p class="quiz-score">
-                                        Score: <strong>{{ $score->score }}</strong> / {{ $score->quiz->questions->count() }}
-                                    </p>
-                                    <div class="quiz-progress-bar">
-                                        <div class="quiz-progress" style="width: {{ round(($score->score / max(1,$score->quiz->questions->count()))*100) }}%"></div>
-                                    </div>
 
                                     <div id="quiz-{{ $student->id }}-{{ $score->quiz->id }}" class="hidden">
+                                        <p>
+                                            Percentage:
+                                            <strong class="{{ ($score->score / max(1,$score->quiz->questions->count()))*100 >= 50 ? 'answer-correct' : 'answer-wrong' }}">
+                                                {{ round(($score->score / max(1,$score->quiz->questions->count()))*100) }}%
+                                            </strong>
+                                        </p>
+
+                                        {{-- Progress bar --}}
+                                        <div class="quiz-progress-bar">
+                                            <div class="quiz-progress" style="width: {{ ($score->score / max(1,$score->quiz->questions->count()))*100 }}%"></div>
+                                        </div>
+
                                         <ul class="question-list">
                                             @foreach($score->quiz->questions as $question)
                                                 @php
@@ -31,6 +41,7 @@
                                                 @endphp
                                                 <li class="question-item">
                                                     <p><strong>{{ $question->question_text }}</strong></p>
+
                                                     <p>
                                                         Antwoord:
                                                         @if($answer)
@@ -41,8 +52,11 @@
                                                             <span class="answer-wrong">Niet beantwoord</span>
                                                         @endif
                                                     </p>
+
                                                     @if(!$answer || !$answer->is_correct)
-                                                        <p class="answer-correct">Juist antwoord: {{ $question->correct_answer }}</p>
+                                                        <p class="answer-correct">
+                                                            Juist antwoord: {{ $question->correct_answer }}
+                                                        </p>
                                                     @endif
                                                 </li>
                                             @endforeach
@@ -52,8 +66,15 @@
                             @endforeach
                         </ul>
                     </div>
-                </div>
-            </li>
-        @endforeach
-    </ul>
-</div>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
+    <script>
+        function toggleElement(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('hidden');
+        }
+    </script>
+@endsection

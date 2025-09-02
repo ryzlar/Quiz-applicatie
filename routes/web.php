@@ -37,6 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/mijn-scores/{sessionId}', [App\Http\Controllers\MainController::class, 'studentScores'])
         ->name('student.scores');
 
+    // routes/web.php
+    Route::get('/docenten', [App\Http\Controllers\MainController::class, 'index'])->name('teacher.index');
+    Route::get('/docenten/{student}', [App\Http\Controllers\MainController::class, 'show'])->name('teacher.show');
+    Route::get('/docenten/{student}/quiz/{quiz}', [App\Http\Controllers\MainController::class, 'quizDetail'])->name('teacher.quiz.detail');
+
 
 
     // Quiz stoppen (GET)
@@ -59,6 +64,16 @@ Route::middleware('auth')->group(function () {
         Route::put('/questions/{question}', [MainController::class, 'queUpdate'])->name('questions.update');
         Route::delete('/questions/{question}', [MainController::class, 'quesDestroy'])->name('questions.destroy');
     });
+
+
+    Route::get('/docenten', [MainController::class, 'docentenPage'])
+        ->name('docent.page');
+
+    Route::get('/docenten/{student}', [MainController::class, 'docentStudentScores'])
+        ->name('docent.student.scores');
+
+    Route::get('/docenten/{student}/quiz/{quiz}', [MainController::class, 'docentStudentQuizDetail'])
+        ->name('docent.student.quiz.detail');
 
 });
 

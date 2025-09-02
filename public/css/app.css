@@ -1705,3 +1705,190 @@ main {
     font-style: italic;
 }
 
+/* Docent page */
+/* --------------------------
+   Docentenpagina
+-------------------------- */
+.docent-page-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Studentenlijst */
+.student-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.student-item {
+    margin-bottom: 1rem;
+}
+
+.student-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 1rem 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Dark mode */
+.dark .student-card {
+    background: #2A2A2A;
+    color: #F5F5F5;
+}
+
+/* Toggle buttons (student/quiz uitklap) */
+.toggle-btn {
+    background-color: #5AC8FA;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.toggle-btn:hover {
+    background-color: #4DB8FF;
+    transform: translateY(-2px);
+}
+
+.dark .toggle-btn {
+    background-color: #4DB8FF;
+}
+
+/* Quiz lijst */
+.quiz-list {
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border-left: 3px solid #5AC8FA;
+}
+
+.quiz-item {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background: #f7f7f7;
+}
+
+.dark .quiz-item {
+    background: #1E1E1E;
+}
+
+/* Quiz score */
+.quiz-score {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    color: #666;
+}
+
+.dark .quiz-score {
+    color: #AAA;
+}
+
+/* Vragenlijst */
+.question-list {
+    margin-top: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+.question-item {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.question-item:last-child {
+    border-bottom: none;
+}
+
+.dark .question-item {
+    border-bottom: 1px solid #333;
+}
+
+/* Correct / fout */
+.answer-correct {
+    color: #22c55e; /* groen */
+    font-weight: 600;
+}
+
+.answer-wrong {
+    color: #ef4444; /* rood */
+    font-weight: 600;
+}
+
+/* Progress bar */
+.quiz-progress-bar {
+    margin-top: 0.5rem;
+    height: 12px;
+    background: #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.quiz-progress {
+    height: 100%;
+    background: #5AC8FA;
+}
+
+.dark .quiz-progress-bar {
+    background: #333;
+}
+
+
+/*Docent Page*/
+
+/* Student en quiz lijsten */
+.student-list, .quiz-list, .quiz-results {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.student-list li,
+.quiz-list li,
+.quiz-results li {
+    margin-bottom: 0.5rem;
+}
+
+.student-list li a,
+.quiz-list li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.student-list li a:hover,
+.quiz-list li a:hover {
+    color: #0056b3;
+}
+
+/* Quiz results styling */
+.quiz-results .question {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+/* Correct / Incorrect antwoorden */
+.correct {
+    color: #28a745; /* groen */
+    font-weight: bold;
+}
+
+.incorrect {
+    color: #dc3545; /* rood */
+    font-weight: bold;
+}
