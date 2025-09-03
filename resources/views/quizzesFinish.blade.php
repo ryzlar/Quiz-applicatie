@@ -1,59 +1,23 @@
-<div class="docent-page-container">
-    <h1>Overzicht Studenten</h1>
+@extends('layouts.frontend')
 
-    <ul class="student-list">
-        @foreach($students as $student)
-            <li class="student-item">
-                <div class="student-card">
-                    <button class="toggle-btn" onclick="toggleElement('student-{{ $student->id }}')">
-                        {{ $student->name }}
-                    </button>
 
-                    <div id="student-{{ $student->id }}" class="hidden">
-                        <ul class="quiz-list">
-                            @foreach($student->studentScores as $score)
-                                <li class="quiz-item">
-                                    <button class="toggle-btn" onclick="toggleElement('quiz-{{ $student->id }}-{{ $score->quiz->id }}')">
-                                        {{ $score->quiz->title }}
-                                    </button>
-                                    <p class="quiz-score">
-                                        Score: <strong>{{ $score->score }}</strong> / {{ $score->quiz->questions->count() }}
-                                    </p>
-                                    <div class="quiz-progress-bar">
-                                        <div class="quiz-progress" style="width: {{ round(($score->score / max(1,$score->quiz->questions->count()))*100) }}%"></div>
-                                    </div>
+@section('content')
+    <div class="quiz-finish-container">
+        <h2 class="quiz-finish-title">Quiz voltooid: {{ $quiz->title }}</h2>
 
-                                    <div id="quiz-{{ $student->id }}-{{ $score->quiz->id }}" class="hidden">
-                                        <ul class="question-list">
-                                            @foreach($score->quiz->questions as $question)
-                                                @php
-                                                    $answer = $student->studentAnswers->firstWhere('question_id', $question->id);
-                                                @endphp
-                                                <li class="question-item">
-                                                    <p><strong>{{ $question->question_text }}</strong></p>
-                                                    <p>
-                                                        Antwoord:
-                                                        @if($answer)
-                                                            <span class="{{ $answer->is_correct ? 'answer-correct' : 'answer-wrong' }}">
-                                                                {{ $answer->answer_text ?? 'Niet beantwoord' }}
-                                                            </span>
-                                                        @else
-                                                            <span class="answer-wrong">Niet beantwoord</span>
-                                                        @endif
-                                                    </p>
-                                                    @if(!$answer || !$answer->is_correct)
-                                                        <p class="answer-correct">Juist antwoord: {{ $question->correct_answer }}</p>
-                                                    @endif
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </li>
-        @endforeach
-    </ul>
-</div>
+
+        <div class="quiz-score-card">
+            <p class="quiz-message">Je hebt de quiz voltooid!</p>
+            <p class="quiz-score">Score: <strong>{{ $score }}</strong> van <strong>{{ $total }}</strong></p>
+            <p class="quiz-percentage">Percentage: <strong>{{ $percentage }}%</strong></p>
+
+
+            <div class="quiz-progress-bar">
+                <div class="quiz-progress" style="width: {{ $percentage }}%"></div>
+            </div>
+        </div>
+
+        <a href="{{ route('quizzes.index') }}" class="quiz-finish-btn">Terug naar Quizzes</a>
+    </div>
+
+@endsection

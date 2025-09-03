@@ -371,6 +371,9 @@ class MainController extends Controller
     {
         $quiz = Quiz::with('questions')->findOrFail($quizId);
 
+        $students = User::with(['studentScores.quiz.questions', 'studentAnswers.question'])->get();
+
+
         // Haal de antwoorden van de huidige student op (bijv via session of database)
         $answers = session('quiz_answers_' . $quizId, []);
         // $answers = [question_id => user_answer, ...]
@@ -398,11 +401,12 @@ class MainController extends Controller
 
         $percentage = $totalQuestions > 0 ? round(($score / $totalQuestions) * 100) : 0;
 
-        return view('quiz.finish', [
+        return view('quizzesFinish', [
             'quiz' => $quiz,
             'score' => $score,
             'total' => $totalQuestions,
-            'percentage' => $percentage
+            'percentage' => $percentage,
+            'students' => $students
         ]);
     }
 
